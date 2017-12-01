@@ -13,11 +13,10 @@ What you need to use this project:
 4. Domain (optional)
 
 ## How to use
+1. Put all files on your webserver
+2. Import coinhive_teamspeak.sql into your mysql server. You can use PHPMyAdmin or using the terminal
 
-Import coinhive_teamspeak.sql into your mysql server. 
-You can use PHPMyAdmin or using the terminal 
-
-`mysql -u username -p coinhive_teamspeak < /path/to/file/coinhive_teamspeak.sql`
+   `mysql -u username -p coinhive_teamspeak < /path/to/file/coinhive_teamspeak.sql`
 
 1. Go to [coinhive.com](https://coinhive.com) and create an account.
 2. After loging in, click "settings" in the top right corner.

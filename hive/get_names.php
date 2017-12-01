@@ -1,4 +1,12 @@
 <?php
+/*
+ * Created by PhpStorm.
+ * User: DatDraggy
+ *
+ * MIT License
+ *
+ * Copyright (c) 2017 DatDraggy
+ */
 require_once('./config.php');
 
 $comboboxValues = '<option value="">Select your name or register</option>';
@@ -10,7 +18,6 @@ try {
     $txt = __FILE__ . ' Error: ' . $e->getMessage();
     file_put_contents("./log/get_names.log", $txt . "\n", FILE_APPEND);
 }
-date_default_timezone_set('Europe/Berlin');
 $stmt = $conn->query("SELECT `name`,`uid` FROM `ts_users` WHERE `mining`=1");
 foreach ($stmt as $row) {
     $comboboxValues = $comboboxValues . '<option value="' . $row['uid'] . '">' . $row['name'] . ' (' . $row['uid'] . ')</option>';

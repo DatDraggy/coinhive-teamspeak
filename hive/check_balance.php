@@ -1,4 +1,12 @@
 <?php
+/*
+ * Created by PhpStorm.
+ * User: DatDraggy
+ *
+ * MIT License
+ *
+ * Copyright (c) 2017 DatDraggy
+ */
 require_once('./TeamSpeak3/TeamSpeak3.php');
 require_once('./config.php');
 

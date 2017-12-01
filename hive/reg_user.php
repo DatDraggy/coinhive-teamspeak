@@ -1,4 +1,12 @@
 <?php
+/*
+ * Created by PhpStorm.
+ * User: DatDraggy
+ *
+ * MIT License
+ *
+ * Copyright (c) 2017 DatDraggy
+ */
 require_once('./config.php');
 
 $reg_names = explode('|||', $_POST['reg_names']);
@@ -15,7 +23,6 @@ try {
     $txt = __FILE__ . ' Error: ' . $e->getMessage();
     file_put_contents("./log/reg_user.log", $txt . "\n", FILE_APPEND);
 }
-date_default_timezone_set('Europe/Berlin'); // CDT
 try {
     $sql = "INSERT INTO `ts_users`(`name`,`uid`,`mining`,`date`) VALUES (:client_name,:uid,'1',:current_date) ON DUPLICATE KEY UPDATE `id`=`id`";
 
