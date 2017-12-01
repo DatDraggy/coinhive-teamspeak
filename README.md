@@ -39,11 +39,11 @@ ETH 0x4b39187EBBb674Fb659A81a433D8e8AfbE3aA32b
 XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn9G8bEBFNiWpw5pm4ToF
 ```
 
-Legal notice
+#### Legal notice
 
 MIT License
 
-Copyright (c) [2017] [Kieran aka DatDraggy]
+Copyright (c) 2017 DatDraggy
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
