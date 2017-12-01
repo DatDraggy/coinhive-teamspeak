@@ -32,7 +32,7 @@ If you setup everything correctly you should be able to register and start minin
 I will try to assist you as good as I can in the issues tab if you need any help.
 
 
-Donations
+#### Donations
 ```
 BTC 122WSgrn2YVG6KQSKB53jfCaZYi3xMi6nb
 ETH 0x4b39187EBBb674Fb659A81a433D8e8AfbE3aA32b
