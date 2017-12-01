@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link href="files/css/bootstrap3.3.7.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <style>
+    #main-wrap .container {
+      padding: 3em 3em 5em;
+    }
+
+    .modal-header {
+      text-align: center !important;
+      background-color: #007196 !important;
+    }
+
+    .modal-header > h4, .modal-header > .close {
+      font-size: 30px;
+      color: white !important;
+    }
+
+  </style>
+</head>
+<body>
+<div id="main-wrap" style="height:100%">
+  <div class="container">
+    <div id="site-content" class="site-elements site-not-footer">
+      <div style="max-width:500px;margin:0 auto;">
+        <div style="">
+          <div class="form-group">
+            <select required id="names" size="1" class="form-control" name="names"></select>
+          </div>
+        </div>
+        <div style="text-align:right;padding-bottom:20px;padding-top:5px;">
+          <a data-toggle="modal" id="register" href="#registerModal">
+
+            Name not found? Register
+
+          </a>
+        </div>
+      </div>
+      <div>
+      </div>
+    </div>
+    <div id="coinhive-miner-div">
+
+    </div>
+    <div id="counter" class="hidden" style="padding-top:5px;padding-left:15px;">
+
+      Hashes left: <span id="needed_hashes">0</span>
+
+    </div>
+  </div><!-- end container -->
+</div>
+<div class="modal fade" id="registerModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="padding:35px 50px;">
+        <a id="close" class="close">&times;</a>
+        <!-- Schlosssymbol mit dem Text Login -->
+        <h4><span class="glyphicon glyphicon-lock"></span>
+
+          Registration
+
+        </h4>
+      </div>
+      <div class="modal-body" style="padding:20px;max-width:80%;margin:0 auto;">
+        <form method="post" action="hive/reg_user.php">
+          <div id="select-div" class="form-group" style="padding-bottom:10px;">
+            <select required id="reg_names" size="1" class="form-control" name="reg_names"></select>
+            <span id="help" class="help-block hidden">
+
+              No user found. You have to be connected to the TS server if you want to register.
+
+            </span>
+          </div>
+          <button id="sendform" class="btn btn-block btn-primary">
+            <span class="glyphicon glyphicon-send"></span>
+
+            Send
+
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+  var uid = '';
+  var counterID = 0;
+  var hashes = 0;
+  $('#close').click(function () {
+    $('#registerModal').modal('toggle');
+  });
+  $('#register').click(function () {
+    $.ajax({
+      type: "POST",
+      url: "hive/get_names_ts.php",
+      data: "",
+      success: function (text) {
+        if (text == '') {
+          $("#select-div").addClass('has-error');
+          $("#help").removeClass('hidden');
+        }
+        console.log(text);
+        $('#reg_names').html(text);
+      },
+      error: function () {
+      }
+    });
+  });
+
+  $('#names').change(function () {
+    clearInterval(counterID);
+    uid = $('#names').find(":selected").val();
+    $.ajax({
+      type: "POST",
+      url: "hive/check_balance.php",
+      data: "uid=" + uid,
+      success: function (text) {
+        $('#needed_hashes').html(text);
+      },
+      error: function () {
+      }
+    });
+    //-----------------
+
+    var sitekey = ''; //Insert public site key here oI3gNfaBOX89awdhpDMgeIUf2i0DFDmT
+
+    //-----------------
+    $('#coinhive-miner-div').html('<div class="coinhive-miner" style="margin:0 auto;max-width: 600px; height: 100px" data-key="' + sitekey + '" data-user="' + uid + '" data-whitelabel="true" data-background="#FFFFFF" data-text="#415161" data-action="#337ab7" data-graph="#555555"><em>Loading...</em></div>');
+    $.getScript('https://authedmine.com/lib/simple-ui.min.js');
+    $("#counter").removeClass('hidden');
+    counterID = setInterval(function () {
+      $.ajax({
+        type: "POST",
+        url: "hive/check_balance.php",
+        data: "uid=" + uid,
+        success: function (text) {
+          $('#needed_hashes').html(text);
+        },
+        error: function () {
+        }
+      });
+    }, 20000);
+  });
+  $(document).ready(function () {
+    $.ajax({
+      type: "POST",
+      url: "hive/get_names.php",
+      data: "",
+      success: function (text) {
+        $('#names').html(text);
+      },
+      error: function () {
+      }
+    });
+  });
+</script>
+</body>
+</html>
