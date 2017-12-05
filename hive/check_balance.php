@@ -13,7 +13,6 @@ require_once('./config.php');
 if (isset($_POST['uid'])) {
     $uid = $_POST['uid'];
     $secretKey = $config["secretKey"];
-    $servergroupid = $config["servergroupid"];
     $hashesNeeded = $config["hashes"];
     if (!empty($uid)) {
         $ch = curl_init();
@@ -24,13 +23,24 @@ if (isset($_POST['uid'])) {
         $data = json_decode($json, true);
         $hashes = $data['total'];
         $hashesRemaining = $hashesNeeded - $hashes;
-        $number = number_format($hashesRemaining, 0, ',', '.');
+
+        //Change number format here
+        $number = number_format($hashesRemaining, 0, '.', ',');
+
         if ($hashes >= $hashesNeeded) {
-            $ts3 = TeamSpeak3::factory("serverquery://" . $config["Username"] . ":" . $config["Password"] . "@" . $config["IP"] . ":" . $config["qPort"] . "/?server_port=" . $config["Port"] . "&nickname=" . $config["Nickname"] . "");
-            $dbid = $ts3->clientFindDb($uid, true)[0];
-            $groupIds = $ts3->clientGetByDbid($dbid)['client_servergroups'];
-            if (strpos($groupIds, $servergroupid) === false) {
-                $ts3->serverGroupClientAdd($servergroupid, $dbid);
+            try {
+                $i = 0;
+                foreach ($config["ports"] as $port) {
+                    $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
+                    $dbid = $ts3->clientFindDb($uid, true)[0];
+                    $groupIds = $ts3->clientGetByDbid($dbid)['client_servergroups'];
+                    if (strpos($groupIds, $config["servergroupid"][$i]) === false) {
+                        $ts3->serverGroupClientAdd($config["servergroupid"][$i], $dbid);
+                    }
+                    $i = $i + 1;
+                }
+                //empty catch because would throw an error if client has never visted one of the servers
+            } catch (TeamSpeak3_Exception $error) {
             }
         }
         echo $number;
