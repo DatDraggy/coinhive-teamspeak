@@ -4,6 +4,8 @@ Let your TeamSpeak users mine Monero for you with one quick registration without
 
 Users will receive a special TeamSpeak group upon reaching a customisable amount of hashes.
 
+Finding security related bugs will be rewarded in ZenCash.
+
 ## Dependencies
 
 What you need to use this project:
