@@ -39,6 +39,15 @@ ETH 0x4b39187EBBb674Fb659A81a433D8e8AfbE3aA32b
 XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn9G8bEBFNiWpw5pm4ToF
 ```
 
+## Version History
+
+### v1.0.1
+- [x] added debug for better troubleshooting
+- [x] changed default bot name
+
+### v1.0.0
+- [x] Release
+
 #### Legal notice
 
 MIT License
