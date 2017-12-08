@@ -19,6 +19,7 @@ $config["ip"] = "1.1.1.1"; //TS Server IP/Domain
 $config["ports"] = array("9987", "9988", "9989"); //TS Server Port
 $config["qPort"] = "10011"; // TS Query Port, Default 10011
 $config["nickname"] = rawurlencode("Bot_" . srandom(5)); // Random name to prevent double nickname error
+$config["debugPass"] = ""; //Passwort for debug. Leave empty for security if not needed
 
 $config["dbserver"] = "localhost"; //MySQL Server
 $config["dbuser"] = "user"; //MySQL User
