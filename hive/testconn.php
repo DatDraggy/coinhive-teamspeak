@@ -4,7 +4,7 @@ require_once('./config.php');
 echo '<!DOCTYPE html><html><head><script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><meta charset="utf-8"></head><body>';
 try {
     $comboboxValues = '<option value="">Users</option>';
-    checkports();
+    checkports($config["ports"]);
     foreach($config["ports"] as $port) {
         $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
         $arr_ClientList = $ts3->clientList(array("client_type" => 0));

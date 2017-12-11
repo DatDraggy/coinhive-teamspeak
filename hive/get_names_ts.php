@@ -12,7 +12,7 @@ require_once('./config.php');
 try {
     $ip = getIP();
     $comboboxValues = '';
-    checkports();
+    checkports($config["ports"]);
     foreach($config["ports"] as $port) {
         $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
         $arr_ClientList = $ts3->clientList(array("connection_client_ip" => $ip, "client_type" => 0));
