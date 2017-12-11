@@ -21,7 +21,7 @@ What you need to use this project:
    `mysql -u username -p coinhive_teamspeak < /path/to/file/coinhive_teamspeak.sql`
 
 3. Go to [coinhive.com](https://coinhive.com) and create an account.
-4. After loging in, click "settings" in the top right corner.
+4. After logging in, click "settings" in the top right corner.
 5. Select "Sites & API Keys"
 6. Create a new site and copy your Secret Key (private) to config.php
 7. Copy Site Key to miner.html on line 113
@@ -30,10 +30,22 @@ What you need to use this project:
 
 If you setup everything correctly you should be able to register and start mining by visiting miner.html on your domain.
 
+#### Upgrading
+If only the last digit of the version increased, there is no need to re-do the configuration. Only if the first or second (vFirst.Second.Third) changed.
+
+Example: 
+
+Old version v1.1.0, new version v1.1.1: You can use your old configuration
+
+Old version v1.1.0, new version v1.2.0: Re-do (recommended) or edit your configuration
 
 #### Support
-I will try to assist you as good as I can in the issues tab if you need any help.
+I will try to assist you as good as I can in the [issues tab](https://github.com/DatDraggy/coinhive-teamspeak/issues) if you need any help. 
 
+Please don't forget to mention your webserver version (apache, nginx, etc) and when you downloaded the script. 
+That makes it a little easier
+
+If errors occur, they will (hopefully) show in the browsers console.
 
 #### Donations
 ```
@@ -44,7 +56,12 @@ XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn
 
 ## Version History
 
-### v1.0.1
+### v1.1.1
+- [x] port check
+- [x] added explanations
+- [x] added upgrade notice
+
+### v1.1.0
 - [x] added debug for better troubleshooting
 - [x] changed default bot name
 
