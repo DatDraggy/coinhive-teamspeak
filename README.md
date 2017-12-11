@@ -26,6 +26,7 @@ What you need to use this project:
 6. Create a new site and copy your Secret Key (private) to config.php
 7. Copy Site Key to miner.html on line 113
 8. Fill out the rest of config.php
+9. Create directory called "log" in hive and set permissions to 777 if you want to enable sql error logging.
 
 If you setup everything correctly you should be able to register and start mining by visiting miner.html on your domain.
 

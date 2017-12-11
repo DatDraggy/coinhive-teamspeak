@@ -22,6 +22,7 @@ try {
 } catch (PDOException $e) {
     $txt = __FILE__ . ' Error: ' . $e->getMessage();
     file_put_contents("./log/reg_user.log", $txt . "\n", FILE_APPEND);
+    // you have to create the log directory and allow the webserver user to write. Or make permissions 777
 }
 try {
     $sql = "INSERT INTO `ts_users`(`name`,`uid`,`mining`,`date`) VALUES (:client_name,:uid,'1',:current_date) ON DUPLICATE KEY UPDATE `id`=`id`";
@@ -34,5 +35,6 @@ try {
 } catch (PDOException $e) {
     $txt = __FILE__ . ' Error: ' . $e;
     file_put_contents("./log/reg_user.log", $txt . "\n", FILE_APPEND);
+    // you have to create the log directory and allow the webserver user to write. Or make permissions 777
 }
 header("Location: " . $config["afterRegUrl"]);
