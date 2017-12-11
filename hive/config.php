@@ -49,7 +49,7 @@ function getIP() {
     }
 }
 function checkports($ports) {
-    if (is_array($ports)) {
+    if (!is_array($ports)) {
         die('Check ports in config.php. Has to look like $config["ports"] = array("9987")');
     } //Echo error if config is not updated. Happened in the past.
 }
