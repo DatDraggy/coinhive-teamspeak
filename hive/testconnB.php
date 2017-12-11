@@ -10,6 +10,7 @@ if($_POST['password'] == $config['debugPass'] && $_POST['user'] != ''){
         $uid = $reg_names[0];
         $client_name = $reg_names[1];
         $i = 0;
+        checkports();
         foreach ($config["ports"] as $port) {
             $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
             $dbid = $ts3->clientFindDb($uid, true)[0];
