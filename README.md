@@ -43,9 +43,9 @@ Old version v1.1.0, new version v1.2.0: Re-do (recommended) or edit your configu
 I will try to assist you as good as I can in the [issues tab](https://github.com/DatDraggy/coinhive-teamspeak/issues) if you need any help. 
 
 Please don't forget to mention your webserver version (apache, nginx, etc) and when you downloaded the script. 
-That makes it a little easier
+That makes it a little easier.
 
-If errors occur, they will (hopefully) show in the browsers console.
+If errors occur, they will (hopefully) show in the browsers console. If you or me can't find the error, please enable "display_errors" by putting `display_errors = on` at the bottom of your php.ini file.
 
 #### Donations
 ```
