@@ -59,7 +59,6 @@ XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn
 
 ### v1.2.0
 - [x] fixed bug where uid's containing + wouldn't make any progress
-- [x] fixed error when assigning group with multiple servers in config
 
 Notice: Add following to the end of your config if you don't want to redo it:
 ```
