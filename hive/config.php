@@ -8,8 +8,8 @@
  * Copyright (c) 2017 DatDraggy
  */
 function srandom($Length) {
-    $Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    return substr(str_shuffle($Chars), 0, $Length);
+  $Chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  return substr(str_shuffle($Chars), 0, $Length);
 }
 
 $config = array();
@@ -37,20 +37,20 @@ date_default_timezone_set('Europe/Berlin'); //Set this to your desired timezone.
 $current_date = date('Y-m-d H:i:s');
 
 function getIP() {
-    $ip = '';
-    // Precedence: if set, HTTP_CF_CONNECTING_IP -> REMOTE_ADDR
-    $headers = array('HTTP_CF_CONNECTING_IP', 'REMOTE_ADDR');
-    foreach ($headers as $header) {
-        if (!empty($_SERVER[$header])) {
-            $ip = $_SERVER[$header];
-            return $ip;
-            break;
-        }
+  $ip = '';
+  // Precedence: if set, HTTP_CF_CONNECTING_IP -> REMOTE_ADDR
+  $headers = array('HTTP_CF_CONNECTING_IP', 'REMOTE_ADDR');
+  foreach ($headers as $header) {
+    if (!empty($_SERVER[$header])) {
+      $ip = $_SERVER[$header];
+      return $ip;
+      break;
     }
+  }
 }
 
 function checkports($ports) {
-    if (!is_array($ports)) {
-        die('Check ports in config.php. Has to look like $config["ports"] = array("9987")');
-    } //Echo error if config is not updated. Happened in the past.
+  if (!is_array($ports)) {
+    die('Check ports in config.php. Has to look like $config["ports"] = array("9987")');
+  } //Echo error if config is not updated. Happened in the past.
 }
