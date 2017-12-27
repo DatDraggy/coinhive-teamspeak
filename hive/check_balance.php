@@ -12,7 +12,7 @@ require_once('./config.php');
 
 if (isset($_POST['uid'])) {
   //prevent insertion of further arguments in the http api request by replacing the & symbol
-  $uid = replace("&", "", $_POST['uid']);
+  $uid = str_replace("&", "", $_POST['uid']);
   $secretKey = str_replace(" ", "", $config["secretKey"]);
   $hashesNeeded = $config["hashes"];
   if (!empty($uid)) {
