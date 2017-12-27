@@ -20,7 +20,7 @@ try {
 }
 $stmt = $conn->query("SELECT `name`,`uid` FROM `ts_users` WHERE `mining`=1");
 foreach ($stmt as $row) {
-  $comboboxValues = $comboboxValues . '<option value="' . $row['uid'] . '">' . $row['name'] . ' (' . $row['uid'] . ')</option>';
+  $comboboxValues = $comboboxValues . '<option value="' . uidencode($row['uid']) . '">' . $row['name'] . ' (' . $row['uid'] . ')</option>';
 }
 $stmt->execute();
 

@@ -54,3 +54,11 @@ function checkports($ports) {
     die('Check ports in config.php. Has to look like $config["ports"] = array("9987")');
   } //Echo error if config is not updated. Happened in the past.
 }
+
+function uidencode($uid) {
+  return str_replace("+", "$$", $uid);
+}
+
+function uiddecode($uid) {
+  return str_replace("$$", "+", $uid);
+}

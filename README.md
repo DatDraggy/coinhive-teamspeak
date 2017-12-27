@@ -57,6 +57,16 @@ XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn
 
 ## Version History
 
+### v1.2.0
+- [x] fixed bug where uid's containing + wouldn't make any progress
+- [x] fixed error when assigning group with multiple servers in config
+
+Notice: Add following to the end of your config if you don't want to redo it:
+```
+function uidencode($uid){return str_replace("+", "$$", $uid);}
+function uiddecode($uid){return str_replace("$$", "+", $uid);}
+```
+
 ### v1.1.3
 - [x] fixed a small client-side XSS vulerability, malicious users were able to inject javascript
 - [x] fixed error when assigning group with multiple servers in config

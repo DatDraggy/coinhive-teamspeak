@@ -12,7 +12,7 @@ require_once('./config.php');
 
 if (isset($_POST['uid'])) {
   //prevent insertion of further arguments in the http api request by replacing the & symbol
-  $uid = str_replace("&", "", $_POST['uid']);
+  $uid = uidencode(str_replace("&", "", $_POST['uid']));
   $secretKey = str_replace(" ", "", $config["secretKey"]);
   $hashesNeeded = $config["hashes"];
   if (!empty($uid)) {
@@ -34,7 +34,7 @@ if (isset($_POST['uid'])) {
       foreach ($config["ports"] as $port) {
         try {
           $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
-          $dbid = $ts3->clientFindDb($uid, true)[0];
+          $dbid = $ts3->clientFindDb(uiddecode($uid), true)[0];
           $groupIds = $ts3->clientGetByDbid($dbid)['client_servergroups'];
           if (strpos($groupIds, $config["servergroupid"][$i]) === false) {
             $ts3->serverGroupClientAdd($config["servergroupid"][$i], $dbid);
