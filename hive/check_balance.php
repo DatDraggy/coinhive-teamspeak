@@ -12,7 +12,7 @@ require_once('./config.php');
 
 if (isset($_POST['uid'])) {
     $uid = $_POST['uid'];
-    $secretKey = $config["secretKey"];
+    $secretKey = str_replace(" ", "", $config["secretKey"]);
     $hashesNeeded = $config["hashes"];
     if (!empty($uid)) {
         $ch = curl_init();

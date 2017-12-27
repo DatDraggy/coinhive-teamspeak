@@ -23,7 +23,8 @@ What you need to use this project:
 3. Go to [coinhive.com](https://coinhive.com) and create an account.
 4. After logging in, click "settings" in the top right corner.
 5. Select "Sites & API Keys"
-6. Create a new site and copy your Secret Key (private) to config.php
+6. Create a new site and copy your Secret Key (private) to config.php 
+Warning: Make sure that there is no space and that the key is correct! Otherwise it won't show the remaining hashes.
 7. Copy Site Key to miner.html on line 113
 8. Fill out the rest of config.php
 9. Create directory called "log" in hive and set permissions to 777 if you want to enable sql error logging.
@@ -55,6 +56,10 @@ XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn
 ```
 
 ## Version History
+
+### v1.1.2
+- [x] added small notice about secret key in readme
+- [x] autoremove spaces from secret key, common mistake
 
 ### v1.1.1
 - [x] port check
