@@ -57,6 +57,10 @@ XMR 4916AsgEtXb68jck6PSYabbdLrpZUKTwQaA7Wm9tNKkAJwizHysjNK1ek989QX3hmtF1GHd1sUdn
 
 ## Version History
 
+### v1.1.3
+- [x] fixed a small client-side XSS vulerability, malicious users were able to inject javascript
+- [x] fixed error when assigning group with multiple servers in config
+
 ### v1.1.2
 - [x] added small notice about secret key in readme
 - [x] autoremove spaces from secret key, common mistake

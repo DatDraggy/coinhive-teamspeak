@@ -7,14 +7,32 @@
  *
  * Copyright (c) 2017 DatDraggy
  */
+require_once('./TeamSpeak3/TeamSpeak3.php');
 require_once('./config.php');
 
 $reg_names = explode('|||', $_POST['reg_names']);
 $uid = $reg_names[0];
-$client_name = $reg_names[1];
+$client_name = htmlspecialchars($reg_names[1]);
 if (empty($uid)) {
     die('Post-Only enabled webpage. Please use the form.');
 }
+$i = 0;
+$visited = 0;
+checkports($config["ports"]);
+foreach ($config["ports"] as $port) {
+    try {
+        $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
+        $dbid = $ts3->clientFindDb($uid, true)[0];
+        $visited += 1;
+    } catch (TeamSpeak3_Exception $error) {
+    }
+    $i += 1;
+}
+
+if ($visited = 0) {
+    die("Possible XSS. Could not find UID on teamspeak server. Please contact the administrator.");
+}
+
 try {
     $conn = new PDO('mysql:dbname=' . $config['dbname'] . ';host=' . $config['dbserver'] . ';charset=utf8', $config['dbuser'], $config['dbpassword']);
     $conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);

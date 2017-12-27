@@ -5,11 +5,11 @@ echo '<!DOCTYPE html><html><head><script src="https://code.jquery.com/jquery-3.2
 try {
     $comboboxValues = '<option value="">Users</option>';
     checkports($config["ports"]);
-    foreach($config["ports"] as $port) {
+    foreach ($config["ports"] as $port) {
         $ts3 = TeamSpeak3::factory("serverquery://" . $config["username"] . ":" . $config["password"] . "@" . $config["ip"] . ":" . $config["qPort"] . "/?server_port=" . $port . "&nickname=" . $config["nickname"] . "");
         $arr_ClientList = $ts3->clientList(array("client_type" => 0));
         foreach ($arr_ClientList as $client) {
-            $comboboxValues = $comboboxValues . '<option value="' . $client['client_unique_identifier'] . '|||' . $client['client_nickname'] . '">' . $client['client_nickname'] . ' (' . $client['client_unique_identifier'] . ')</option>';
+            $comboboxValues = $comboboxValues . '<option value="' . $client['client_unique_identifier'] . '|||' . htmlspecialchars($client['client_nickname']) . '">' . htmlspecialchars($client['client_nickname']) . ' (' . $client['client_unique_identifier'] . ')</option>';
         }
         $ts3 = null;
     }
@@ -24,7 +24,7 @@ try {
 <button id="add_group" style="margin-bottom:50px">Add to group</button><br>
 <span id="error"></span>
 <script>
-    $("#add_group").click(function() {
+    $("#add_group").click(function () {
         /* Ajax call script add UID to group for test */
         var user = $('#names').find(":selected").val();
         $.ajax({
